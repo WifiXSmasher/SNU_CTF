@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{% block title %}Default Title{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'base/css/base_style.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+     
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="nav_logo">
+            <a href="{% url 'index' %}">
+                <div class="logo"></div>
+            </a>
+        </div>
+        <div class="nav_links">
+            <a href="{%url 'index'%}"><div class="aboutme border"><p>About Me</p></div></a>
+            <a href="{%url 'my_projects'%}"><div class="myprojects secondary border"><p>My Projects</p></div></a>
+            <a href="{%url 'ctfs_url'%}"><div class="CTFs border secondary"><p>CTFs</p></div></a>
+            <div class="MyProfile">
+                <i class="fa-regular fa-circle-user"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="github footer_links">
+            <a href="https://github.com/WifiXSmasher" target="_blank" class="footer_links">
+                <i class="fa-brands fa-github"></i>  
+                <p><b>Github-link</b></p>  
+            </a>
+        </div>
+        <div class="linkedin footer_links">
+            <a href="https://www.linkedin.com/in/ruchir-kalla-a58005286/">
+                <i class="fa-brands fa-linkedin"></i>
+                <p><b>LinkedIn</b></p>
+            </a>
+        </div>
+        <div class="mail footer_links">
+            <a href="mailto:rk336@snu.edu.in">
+                <i class="fa-solid fa-envelope"></i>
+                <p><b>GMail</b></p>
+            </a>        
+        </div>
+        <div class="phone footer_links">
+            <i class="fa-solid fa-phone"></i>
+            <p><b>+91 9413755584</b></p>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+{% extends "navbar_footer.html" %}
+{% load static %}
+
+{% block title %}
+My Projects
+{% endblock title %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'projects/css/all_projects_style.css' %}">
+
+<div class="projects-container">
+  {% for project in Projects %}
+    {% if project.id %}
+      <a href="{% url 'project_details' project.id %}">
+        <div class="project-card">
+          <img src="{{ project.image.url }}" alt="{{ project.name }}">
+          <h3>{{ project.name }}</h3>
+        </div>
+      </a>
+    {% endif %}
+  {% endfor %}
+</div>
+
+
+{% endblock content %}

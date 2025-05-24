@@ -1,0 +1,28 @@
+{% extends "navbar_footer.html" %}
+{% load static %}
+
+{% block title %}
+CTFs
+<h2 class="page-heading">Capture The Flag Challenges</h2>
+{% endblock title %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'ctfs/css/ctfs_style.css' %}">
+
+<div class="ctf-container">
+    <div class="ctf-grid">
+        {% for ctf in ctfs %}
+            <div class="ctf-card">
+                <h3>{{ ctf.title }}</h3>
+                <p><strong>Date:</strong> {{ ctf.date }}</p>
+                <p><strong>Description:</strong> {{ ctf.description|truncatewords:25 }}</p>
+                {% comment %} <a href="{{ ctf.get_absolute_url }}" class="btn">View Details</a> {% endcomment %}
+            </div>
+        {% empty %}
+            <p>No CTFs uploaded yet.</p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}
+  
