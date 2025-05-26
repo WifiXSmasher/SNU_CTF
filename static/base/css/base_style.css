@@ -141,3 +141,32 @@ body {
 .footer_links p {
     margin-top: 10px;
 }
+
+
+/* ____________________XXXXXXXX________for dark mode _______________XXXXXXXXXXXXXXXXXXXXXX */
+
+body.dark-mode {
+    background-color: #121212;
+    color: #f0f0f0;
+}
+
+body.dark-mode .navbar {
+    background-color: #001f4d;
+    color: #f0f0f0;
+}
+
+body.dark-mode .aboutme,
+body.dark-mode .secondary,
+body.dark-mode .CTFs,
+body.dark-mode .MyProfile {
+    color: #ffcc00;
+}
+
+body.dark-mode .footer {
+    background-color: #000c1a;
+    color: #ffcc00;
+}
+
+body.dark-mode .logo:hover {
+    border: 2px solid #f0f0f0;
+}

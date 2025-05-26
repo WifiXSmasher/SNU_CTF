@@ -38,15 +38,16 @@
     transform: translateY(-5px);
 }
 
-.ctf-card h3 {
+.ctf-card h3  {
     font-size: 22px;
     color: #333;
     margin-bottom: 10px;
 }
 
+
 .ctf-card p {
     font-size: 14px;
-    color: #555;
+    color: #000000;
 }
 
 /* view details button */

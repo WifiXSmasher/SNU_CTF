@@ -1,0 +1,26 @@
+{% extends "navbar_footer.html" %}
+{% load static %}
+
+{% block title %}{{ type }} CTFs{% endblock title %}
+
+
+{% block content %}
+<link rel="stylesheet" href="{%static 'ctfs/css/ctf_type_style.css'%}">
+
+<h2>{{ type }} CTFs</h2>
+
+<div class="ctf-container">
+    <div class="ctf-grid">
+        {% for ctf in ctfs %}
+            <div class="ctf-card">
+                <h3>{{ ctf.title }}</h3>
+                <p><strong>Date:</strong> {{ ctf.date }}</p>
+                <p><strong>Description:</strong> {{ ctf.description|truncatewords:20 }}</p>
+                <a href="{{ ctf.get_absolute_detail_url }}" class="btn">Solve Challenge</a>
+            </div>
+        {% empty %}
+            <p>No CTFs in this category yet.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

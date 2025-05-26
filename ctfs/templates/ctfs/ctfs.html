@@ -2,27 +2,26 @@
 {% load static %}
 
 {% block title %}
-CTFs
-<h2 class="page-heading">Capture The Flag Challenges</h2>
+CTF Categories
 {% endblock title %}
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'ctfs/css/ctfs_style.css' %}">
 
 <div class="ctf-container">
+    <h2>CTF Categories</h2>
     <div class="ctf-grid">
-        {% for ctf in ctfs %}
-            <div class="ctf-card">
-                <h3>{{ ctf.title }}</h3>
-                <p><strong>Date:</strong> {{ ctf.date }}</p>
-                <p><strong>Description:</strong> {{ ctf.description|truncatewords:25 }}</p>
-                {% comment %} <a href="{{ ctf.get_absolute_url }}" class="btn">View Details</a> {% endcomment %}
-            </div>
+        {% for code, label in ctftypes %}
+            <a href="{% url 'ctf_type' code|lower %}">
+                <div class="ctf-card">
+                    <h3>{{ label }}</h3>
+                    <p>Click to view challenges in this category.</p>
+                </div>
+            </a>
         {% empty %}
-            <p>No CTFs uploaded yet.</p>
+            <p>No CTF types defined.</p>
         {% endfor %}
     </div>
 </div>
 
 {% endblock content %}
-  

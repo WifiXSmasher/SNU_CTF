@@ -236,6 +236,9 @@
     --tw-tracking: var(--tracking-normal);
     letter-spacing: var(--tracking-normal);
   }
+  .uppercase {
+    text-transform: uppercase;
+  }
 }
 @property --tw-border-style {
   syntax: "*";

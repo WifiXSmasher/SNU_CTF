@@ -16,9 +16,9 @@
     <!-- Navbar -->
     <div class="navbar">
         <div class="nav_logo">
-            <a href="{% url 'index' %}">
+            <buttonid id="theme-toggle">
                 <div class="logo"></div>
-            </a>
+            </button>
         </div>
         <div class="nav_links">
             <a href="{%url 'index'%}"><div class="aboutme border"><p>About Me</p></div></a>
@@ -60,6 +60,29 @@
             <p><b>+91 9413755584</b></p>
         </div>
     </div>
+
+
+{% comment %} ______________XXXXXXXXXXX______for dark mode____________XXXXXXXXX________ {% endcomment %}
+<script>
+    const toggleButton = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    // Apply dark mode from localStorage if set
+    if (localStorage.getItem('theme') === 'dark') {
+        body.classList.add('dark-mode');
+    }
+
+    toggleButton.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        // Save preference
+        if (body.classList.contains('dark-mode')) {
+            localStorage.setItem('theme', 'dark');
+        } else {
+            localStorage.setItem('theme', 'light');
+        }
+    });
+</script>
+{% comment %} ____________________XXXXXXXXXXX______f________XXXXXXXX_______________XXXXXXXXXXXXXXXX {% endcomment %}
 
 </body>
 </html>
