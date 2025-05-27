@@ -1,0 +1,25 @@
+{
+    "builds": [
+        {
+            "src": "portfolio_django/wsgi.py",
+            "use": "@vercel/python",
+            "config":{
+                "maxLambdaSize": "50mb",
+                "runtime" : "pyhton3.13",
+                "buildCommand": "bash setup.sh"
+
+            }
+        }
+    ],
+
+    "routes" : [
+        {
+            "src":"/(./*)",
+            "dest": "portfolio_django/wsgi.py"
+        },
+        {
+            "src":"/static/(.*)",
+            "dest": "/static/$1"
+        }
+    ]
+}
