@@ -32,7 +32,8 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    '.vercel.app',     
+    '.vercel.app',
+    '*',     
 ]
 
 
@@ -150,8 +151,8 @@ AUTHENTICATION_BACKENDS = [
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'APP': {
-            'client_id': '235916341309-2rklealr1geul3jujrggl2dk6mhvtuie.apps.googleusercontent.com',
-            'secret': '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',
+            'client_id': config('CLIENT_ID'),
+            'secret': config('SECRET'),
             'key': ''
         }
     }
@@ -159,6 +160,11 @@ SOCIALACCOUNT_PROVIDERS = {
 LOGIN_REDIRECT_URL = '/' # or whatever your homepage or dashboard path is
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.vercel.app',
+    # Add your custom domain if you have one
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/

@@ -4,7 +4,7 @@
             "src": "portfolio_django/wsgi.py",
             "use": "@vercel/python",
             "config":{
-                "maxLambdaSize": "50mb",
+                "maxLambdaSize": "15mb",
                 "runtime" : "pyhton3.12"
             }
         }
@@ -12,7 +12,7 @@
 
     "routes" : [
         {
-            "src":"/(./*)",
+            "src":"/(.*)",
             "dest": "portfolio_django/wsgi.py"
         },
         {
