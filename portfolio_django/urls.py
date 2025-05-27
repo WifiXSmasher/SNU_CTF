@@ -25,7 +25,9 @@ urlpatterns = [
     path('', views.home, name='index'),
     path('projects/', include('projects.urls')),
     path('ctfs/', include('ctfs.urls')),
+    path('profiles/', include('profiles.urls')),
 
+    path('accounts/', include('allauth.urls')),#fro enabling google allauth
     path("__reload__/", include("django_browser_reload.urls")),
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

@@ -4,15 +4,22 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>{% block title %}Default Title{% endblock %}</title>
+    <title>{% block head_title %}Default Title{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'profiles/css/profile_style.css' %}">{% comment %} css for the profile_landing and the guest_landing pages {% endcomment %}
+
+    
+    {% comment %} Optional: Custom stylesheet if needed {% endcomment %}
     <link rel="stylesheet" href="{% static 'base/css/base_style.css' %}" />
+
+    {% comment %} FontAwesome for icons {% endcomment %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-     
 </head>
-<body>
 
+<body>
+    
     <!-- Navbar -->
     <div class="navbar">
         <div class="nav_logo">
@@ -24,9 +31,11 @@
             <a href="{%url 'index'%}"><div class="aboutme border"><p>About Me</p></div></a>
             <a href="{%url 'my_projects'%}"><div class="myprojects secondary border"><p>My Projects</p></div></a>
             <a href="{%url 'ctfs_url'%}"><div class="CTFs border secondary"><p>CTFs</p></div></a>
-            <div class="MyProfile">
-                <i class="fa-regular fa-circle-user"></i>
-            </div>
+            <a  href="{%url 'profile_landing'%}" style="color: inherit; text-decoration: none;">
+                <div class="MyProfile">
+                    <i class="fa-regular fa-circle-user"></i>
+                </div>
+            </a>
         </div>
     </div>
 

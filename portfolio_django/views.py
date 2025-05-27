@@ -9,3 +9,4 @@ def My_projects(request):
 
 def CTFs(request):
     return render(request, 'ctfs/ctfs.html')
+

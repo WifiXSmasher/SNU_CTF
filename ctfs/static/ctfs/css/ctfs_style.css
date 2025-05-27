@@ -55,7 +55,7 @@
     display: inline-block;
     margin-top: 15px;
     padding: 10px 15px;
-    background-color: #007bff;
+    background-color: #e2c025;
     color: white;
     text-decoration: none;
     border-radius: 8px;
@@ -63,5 +63,41 @@
 }
 
 .btn:hover {
-    background-color: #0056b3;
+    background-color: #b629af;
+}
+
+/* header with leaderboard link */
+.ctf-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.ctf-header .page-heading {
+    margin: 0;
+    font-size: 50px;
+}
+
+/* leaderboard button */
+.leaderboard-link {
+    font-size: 20px;
+    /* bigger font */
+    padding: 14px 24px;
+    /* more padding */
+    border-radius: 12px;
+    /* slightly rounder */
+    font-weight: 600;
+    /* make text a bit bolder */
+    background-color: royalblue;
+    color:gold;
+    text-decoration: none;
+    border: 2px solid #CD7F32;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+    display: inline-block;
+}
+
+.leaderboard-link:hover {
+    background-color: #f6cd02;
+    color: #ffffff;
 }

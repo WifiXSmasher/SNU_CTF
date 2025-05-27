@@ -9,7 +9,11 @@ CTF Categories
 <link rel="stylesheet" href="{% static 'ctfs/css/ctfs_style.css' %}">
 
 <div class="ctf-container">
-    <h2>CTF Categories</h2>
+    <div class="ctf-header">
+        <h2 class="page-heading">CTF Categories</h2>
+        <a href="{% url 'leaderboard' %}" class="leaderboard-link">View Leaderboard</a>
+    </div>
+
     <div class="ctf-grid">
         {% for code, label in ctftypes %}
             <a href="{% url 'ctf_type' code|lower %}">
@@ -23,5 +27,4 @@ CTF Categories
         {% endfor %}
     </div>
 </div>
-
 {% endblock content %}

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-5d0vq54l+cf)ljrl$5t@v2%$2+kh*p(i8d&6el+bu^2o%n96hz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -42,8 +42,22 @@ INSTALLED_APPS = [
     'theme',
     'django_browser_reload',
     'ctfs',
+    'profiles',
+
+    # for google allauth
+    'django.contrib.sites',
+
+    # Allauth core
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    # Google provider
+    'allauth.socialaccount.providers.google',
 
 ]
+SITE_ID = 1
+
 
 TAILWIND_APP_NAME = 'theme'
 INTERNAL_IPS = ['127.0.0.1']
@@ -58,7 +72,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_browser_reload.middleware.BrowserReloadMiddleware'
+    'django_browser_reload.middleware.BrowserReloadMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'portfolio_django.urls'
@@ -109,6 +124,24 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',  # default
+    'allauth.account.auth_backends.AuthenticationBackend',  # allauth
+]
+
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': '235916341309-2rklealr1geul3jujrggl2dk6mhvtuie.apps.googleusercontent.com',
+            'secret': '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',
+            'key': ''
+        }
+    }
+}
+LOGIN_REDIRECT_URL = '/' # or whatever your homepage or dashboard path is
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 
 
 # Internationalization

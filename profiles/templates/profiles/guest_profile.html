@@ -1,0 +1,24 @@
+{% extends "navbar_footer.html" %}
+{% load static %}
+
+{% block head_title %}Please Sign In{% endblock %}
+
+{% block extra_head %}
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'profiles/css/guest_profile.css' %}">
+<div class="guest-container">
+  <h2>You are not logged in</h2>
+  <p>Please sign in or sign up to view your profile.</p>
+
+  <div class="btn-group">
+    <a href="{% url 'account_login' %}">
+      <button class="bg-blue-600">Login</button>
+    </a>
+    <a href="{% url 'account_signup' %}">
+      <button class="bg-gray-700">Sign Up</button>
+    </a>
+  </div>
+</div>
+{% endblock %}

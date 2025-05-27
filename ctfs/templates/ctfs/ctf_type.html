@@ -14,6 +14,7 @@
         {% for ctf in ctfs %}
             <div class="ctf-card">
                 <h3>{{ ctf.title }}</h3>
+                <p><strong><i>Level:</i></strong>{{ctf.category}}</p>
                 <p><strong>Date:</strong> {{ ctf.date }}</p>
                 <p><strong>Description:</strong> {{ ctf.description|truncatewords:20 }}</p>
                 <a href="{{ ctf.get_absolute_detail_url }}" class="btn">Solve Challenge</a>

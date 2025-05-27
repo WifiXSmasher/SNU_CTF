@@ -1,0 +1,23 @@
+{% extends "navbar_footer.html" %}
+{% load static %}
+{% block head_title %}My Profile{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>My Profile</h2>
+    
+    <div class="space-y-3">
+        <p><span>Username:</span> {{ user.username }}</p>
+        <p><span>Email:</span> {{ user.email }}</p>
+        <p><span>First Name:</span> {{ user.first_name }}</p>
+        <p><span>Last Name:</span> {{ user.last_name }}</p>
+    </div>
+
+    <div class="signout-wrapper">
+        <form method="POST" action="{% url 'account_logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="bg-red-600">Sign Out</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
