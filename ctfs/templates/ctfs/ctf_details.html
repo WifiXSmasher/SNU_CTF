@@ -1,9 +1,7 @@
-{% extends "navbar_footer.html" %} 
-{% load static %} 
+{% extends "navbar_footer.html" %}
+{% load static %}
 {% block title %}
-
-{{ ctf.title }}
-
+  {{ ctf.title }}
 {% endblock title %}
 
 {% block content %}
@@ -19,10 +17,11 @@
 
   <div class="ctf-description">
     <p>{{ ctf.description }}</p>
+
+    {# Check if challenge file exists #}
     {% if ctf.challange_files %}
       <br><br>
-      {% comment %} <p><strong>Challenge File:</strong></p> {% endcomment %}
-      <a href="{{ ctf.challange_files.url }}" download class="btn download-btn">
+      <a href="{{ ctf.challange_files }}" download class="btn download-btn">
         <i><b>Download Challenge File</b></i>
       </a>
     {% else %}
@@ -30,6 +29,23 @@
     {% endif %}
   </div>
 
+  {# Messages block - shows success, error, info messages #}
+  {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {# Show "Already Solved" info if user has completed this challenge #}
+  {% if solved %}
+    <div class="solved-box">
+      <strong>You have already solved this challenge.</strong>
+    </div>
+  {% endif %}
+
+  {# Submission form #}
   <form method="post" class="ctf-form">
     {% csrf_token %}
     <label for="answer">Enter Your Answer:</label>
@@ -38,17 +54,10 @@
       name="answer"
       id="answer"
       class="form-control"
+      placeholder="Flag format: CTF{...}"
       required
     />
     <button type="submit" class="btn">Submit</button>
-    {% if messages %}
-      <ul class="messages">
-        {% for message in messages %}
-          <li class="{{ message.tags }}">{{ message }}</li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-
   </form>
 </div>
 {% endblock content %}

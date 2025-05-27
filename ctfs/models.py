@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse  # used for creating URLs to CTF detail pages
 from django.contrib.auth.models import User
 
+
 class CTFs(models.Model):
     # 1. Hardcoded types for CTFs (example: Steganography, Web Security, etc.)
     CTF_TYPE = [
@@ -29,7 +30,9 @@ class CTFs(models.Model):
     category = models.CharField(max_length=3, choices=CATEGORIES, default='BAS')
 
     # 6. Optional image for the CTF challenge
-    image = models.ImageField(upload_to='ctf_images/', blank=True, null=True)
+    # image = models.ImageField(upload_to='ctf_images/', blank=True, null=True)
+    image = models.URLField(blank=True, null=True)   #for supabase storage
+
 
     # 7. Description of the CTF challenge
     description = models.TextField()
@@ -41,7 +44,9 @@ class CTFs(models.Model):
     points = models.IntegerField()
 
     #optional files that the user can download 
-    challange_files = models.FileField(upload_to='ctf_files/', blank=True, null=True)
+    # challange_files = models.FileField(upload_to='ctf_files/', blank=True, null=True)
+    challange_files = models.URLField(blank=True, null=True)#for supabase 
+   
 
     solution = models.TextField(max_length = 50)
 
@@ -55,7 +60,29 @@ class CTFs(models.Model):
 
     def get_absolute_detail_url(self):
         return reverse('ctf_detail', args=[self.type.lower(), self.title])
+    
+    
+    
+    # OVERRIDDEN save() method to upload files to Supabase buckets
+    def save(self, *args, **kwargs):
+        # Handle image upload
+        if hasattr(self, '_image_file') and self._image_file:
+            content = self._image_file.read()
+            path = f"ctf-images/{self._image_file.name}"
+            mime_type = mimetypes.guess_type(self._image_file.name)[0] or "application/octet-stream"
+            supabase.storage.from_("ctf-images").upload(path, content, {"content-type": mime_type})
+            self.image = supabase.storage.from_("ctf-images").get_public_url(path)
 
+        # Handle challenge file upload
+        if hasattr(self, '_challenge_file') and self._challenge_file:
+            content = self._challenge_file.read()
+            path = f"ctf-files/{self._challenge_file.name}"
+            mime_type = mimetypes.guess_type(self._challenge_file.name)[0] or "application/octet-stream"
+            supabase.storage.from_("ctf-files").upload(path, content, {"content-type": mime_type})
+            self.challange_files = supabase.storage.from_("ctf-files").get_public_url(path)
+
+        # Call original save method
+        super().save(*args, **kwargs)
 
 
 

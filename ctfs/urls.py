@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 
+
 urlpatterns = [
     path('', views.ctf_list, name='ctfs_url'),  #for /ctfs
     path('leaderboard/', views.leaderboard, name='leaderboard'),
