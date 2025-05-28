@@ -16,14 +16,14 @@ CTF Categories
 
     <div class="ctf-grid">
         {% for code, label in ctftypes %}
-            <a href="{% url 'ctf_type' code|lower %}">
+            <a href="{% url 'ctf_type' code|lower %}" class="ctf-card-link">
                 <div class="ctf-card">
                     <h3>{{ label }}</h3>
                     <p>Click to view challenges in this category.</p>
                 </div>
             </a>
         {% empty %}
-            <p>No CTF types defined.</p>
+            <p class="no-ctf-message">No CTF types defined.</p>
         {% endfor %}
     </div>
 </div>

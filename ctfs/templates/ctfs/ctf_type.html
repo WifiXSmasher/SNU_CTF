@@ -6,9 +6,13 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'ctfs/css/ctf_type_style.css' %}">
 
-<h2>{{ type }} CTFs</h2>
-
 <div class="ctf-container">
+
+    <div class="ctf-header">
+        <h2 class="page-heading">{{ type }} CTFs</h2>
+        <a href="{% url 'leaderboard' %}" class="leaderboard-link">View Leaderboard</a>
+    </div>
+
     <div class="ctf-grid">
         {% for ctf in ctfs %}
             <div class="ctf-card">
@@ -19,18 +23,7 @@
                 <p><strong>Points:</strong> {{ ctf.points }}</p>
                 <p><strong>Description:</strong> {{ ctf.description|truncatewords:20 }}</p>
                 
-                {# Use Django's URL tag for proper encoding #}
                 <a href="{% url 'ctf_detail' type=ctf.type|lower title=ctf.title %}" class="btn">Solve Challenge</a>
-                
-                {# Alternative: If you want to use the model method (should work with the fix) #}
-                {# <a href="{{ ctf.get_absolute_detail_url }}" class="btn">Solve Challenge</a> #}
-                
-                {# Debug info - remove when working #}
-                {% comment %}
-                <small style="display:block; margin-top:10px; color:#666;">
-                    Debug URL: {% url 'ctf_detail' type=ctf.type|lower title=ctf.title %}
-                </small>
-                {% endcomment %}
             </div>
         {% empty %}
             <div class="ctf-card">
@@ -42,6 +35,5 @@
         {% endfor %}
     </div>
 </div>
-
 
 {% endblock content %}
