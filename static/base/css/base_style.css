@@ -127,7 +127,7 @@ body {
     padding: 0 20px;
     margin-bottom: 100px;
 }
- 
+
 
 .about-content {
     display: grid;
@@ -232,7 +232,7 @@ body.dark-mode .logo:hover {
 body.dark-mode .content-section {
     background: #1e1e1e;
     color: #f0f0f0;
-} 
+}
 
 body.dark-mode .content-section h3 {
     color: #ffcc00;
@@ -272,6 +272,7 @@ body.dark-mode .content-section p {
         margin: 30px auto;
         padding: 0 15px;
     }
+
     .content-section {
         padding: 25px;
     }

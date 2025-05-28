@@ -1,0 +1,24 @@
+{% load i18n %}
+{% load allauth %}
+{% load socialaccount %}
+{% get_providers as socialaccount_providers %}
+{% load static %}
+
+{% if socialaccount_providers %}
+    {% if not SOCIALACCOUNT_ONLY %}
+        <hr class="social-divider" />
+        <h2 class="social-heading">{% translate "Or use a third-party" %}</h2>
+    {% endif %}
+
+    <div class="social-login-wrapper">
+        <link rel="stylesheet" href="{%static 'account/login3.css'%}">
+        {% for provider in socialaccount_providers %}
+            <a href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}" 
+               class="social-btn">
+                Sign in with {{ provider.name }}
+            </a>
+        {% endfor %}
+    </div>
+
+    {% include "socialaccount/snippets/login_extra.html" %}
+{% endif %}

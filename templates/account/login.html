@@ -1,0 +1,60 @@
+{% extends "allauth/layouts/base.html" %}
+{% load i18n %}
+{% load allauth account %}
+{% load static %}
+
+{% block head_title %}
+    {% trans "Sign In" %}
+{% endblock head_title %}
+
+{% block extra_head %}
+{% endblock extra_head %}
+{% block content %}
+    <div class="card-header">
+        <h1>{% trans "Sign In" %}</h1>
+    </div>
+
+    <div class="card-content">
+        {% if not SOCIALACCOUNT_ONLY %}
+            <p>
+                {% blocktranslate %}
+                    If you have not created an account yet, then please
+                    <a href="{{ signup_url }}">sign up</a>
+                    first.
+                {% endblocktranslate %}
+            </p>
+        {% endif %}
+
+        {% if LOGIN_BY_CODE_ENABLED or PASSKEY_LOGIN_ENABLED %}
+            <hr>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                {% if PASSKEY_LOGIN_ENABLED %}
+                    <form method="post" id="mfa_login">{% csrf_token %}
+                        <button id="passkey_login" type="submit" class="primary-btn">
+                            {% trans "Sign in with a passkey" %}
+                        </button>
+                    </form>
+                {% endif %}
+
+                {% if LOGIN_BY_CODE_ENABLED %}
+                    <a href="{{ request_login_code_url }}" class="primary-btn">
+                        {% trans "Send me a sign-in code" %}
+                    </a>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        {% if SOCIALACCOUNT_ENABLED %}
+            <div style="margin-top: 20px;">
+                {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock content %}
+
+{% block extra_body %}
+    {{ block.super }}
+    {% if PASSKEY_LOGIN_ENABLED %}
+        {% include "mfa/webauthn/snippets/login_script.html" with button_id="passkey_login" %}
+    {% endif %}
+{% endblock extra_body %}

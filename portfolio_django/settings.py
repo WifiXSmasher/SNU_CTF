@@ -160,6 +160,8 @@ SOCIALACCOUNT_PROVIDERS = {
 LOGIN_REDIRECT_URL = '/' # or whatever your homepage or dashboard path is
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+SOCIALACCOUNT_ONLY=True
 
 CSRF_TRUSTED_ORIGINS = [
     'https://*.vercel.app',

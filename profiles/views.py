@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 #     return render(request, 'profiles/profile.html', {'user': request.user})
 # User = get_user_model()
 
+
 def profile_landing(request):
     if request.user.is_authenticated:
         return render(request, "profiles/profile_landing.html", {"user": request.user})

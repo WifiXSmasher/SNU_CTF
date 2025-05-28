@@ -1,0 +1,42 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            {% block head_title %}
+            {% endblock head_title %}
+        </title>
+        <link rel="stylesheet" href="{%static '/account/base/base_login_template.css'%}">
+        
+        {% block extra_head %}
+        {% endblock extra_head %}
+    </head>
+    <body>
+        {% block body %}
+            <div class="container">
+                {% if messages %}
+                    <div class="messages-card">
+                        <div class="card-header">
+                            <strong>{% trans "Messages:" %}</strong>
+                        </div>
+                        <div class="card-content">
+                            <ul class="messages-list">
+                                {% for message in messages %}<li class="message-item">{{ message }}</li>{% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                {% endif %}
+            
+                <div class="content-card">
+                    {% block content %}
+                    {% endblock content %}
+                </div>
+            </div>
+        {% endblock body %}
+        {% block extra_body %}
+        {% endblock extra_body %}
+    </body>
+</html>
