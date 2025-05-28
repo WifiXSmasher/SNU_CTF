@@ -28,9 +28,6 @@
         {% empty %}
             <div class="ctf-card">
                 <p>No CTFs in this category yet.</p>
-                {% if user.is_staff %}
-                    <a href="{% url 'create_ctf' %}" class="btn">Create First CTF</a>
-                {% endif %}
             </div>
         {% endfor %}
     </div>
