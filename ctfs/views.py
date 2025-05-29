@@ -12,7 +12,7 @@ import mimetypes
 from django.db.models.functions import Coalesce
 from django.db.models import Value, IntegerField
 from django.db.models import Sum, Min, Value, IntegerField
-c
+
 # Import supabase client if available
 try:
     from .supabase_client import supabase
