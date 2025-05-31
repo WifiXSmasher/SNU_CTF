@@ -124,3 +124,5 @@ class UserCTFProgress(models.Model):
 
     class Meta:
         unique_together = ('user', 'ctf')  # Prevent multiple entries per user/ctf
+
+        

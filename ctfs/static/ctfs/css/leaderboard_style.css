@@ -6,7 +6,7 @@
     --text-color: #333;
     --container-bg: #ffffff;
     --shadow-color: rgba(0, 0, 0, 0.1);
-    --header-bg: #1f2937;
+    --header-bg: #baa3ffee;
     --header-text-color: gold;
     --row-even-bg: #f1f5f9;
     --row-hover-bg: #e2e8f0;
@@ -20,16 +20,17 @@
 
 /* Dark mode overrides */
 body.dark-mode {
-    --bg-color: #121212;
+    --bg-color: #363739;
     --container-bg: #1e1e1e;
     --shadow-color: rgba(147, 148, 112, 0.8);
-    --header-bg: #5d6370;
+    --header-bg: #baa3ffee;
     --row-even-bg: #5d6370;
+    --row-odd-bg:#7a7d85;
     --row-hover-bg: #5a5f6a;
 
     /* keep leaderboard text light gray, not white */
     --text-color: #060606;
-
+    
     --gold-bg: #ffe74b;
     --silver-bg: #d5d4d4;
     --bronze-bg: #e4a849;
@@ -83,6 +84,10 @@ h1 {
 
 .leaderboard-table tbody tr:nth-child(even) {
     background-color: var(--row-even-bg);
+}
+
+.leaderboard-table tbody tr:nth-child(odd) {
+    background-color: var(--row-odd-bg);
 }
 
 .leaderboard-table tbody tr:hover {

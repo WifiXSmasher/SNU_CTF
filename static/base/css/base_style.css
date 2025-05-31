@@ -80,7 +80,7 @@ a {
 /* Common nav item styles */
 .aboutme,
 .secondary,
-.CTFs {
+.CTFs{
     width: 150px;
     height: 60px;
     display: flex;
@@ -103,6 +103,8 @@ a {
     transition: transform 0.2s ease;
     color: goldenrod;
 }
+
+
 
 .MyProfile i:hover {
     transform: scale(1.1);
@@ -445,4 +447,29 @@ body.dark-mode .nav_links {
     body.dark-mode .nav_links {
         background-color: #001f4d;
     }
+}
+
+
+.theme_toggle * {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    color: goldenrod;
+    align-items: flex-end;
+}
+.theme-toggle {
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.theme_toggle i {
+    font-size: 35px !important;
+    /* increase size here */
+    line-height: 1;
+    display: flex;
+    
 }

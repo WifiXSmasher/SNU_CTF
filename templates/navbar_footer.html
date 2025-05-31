@@ -23,10 +23,12 @@
     <!-- Navbar -->
     <div class="navbar">
         <div class="nav_logo">
-            <button id="theme-toggle">
+            <a href="{%url 'index'%}">
                 <div class="logo"></div>
-            </button>
+            </a>
         </div>
+
+        
         
         <!-- Mobile menu toggle -->
         <div class="mobile-menu-toggle">
@@ -34,6 +36,11 @@
         </div>
         
         <div class="nav_links">
+            <div class="theme_toggle">
+             <button id="theme-toggle">
+               <i class="fa-solid fa-cloud-sun"></i>
+            </button>
+        </div>
             <a href="{%url 'index'%}"><div class="aboutme border"><p>About Me</p></div></a>
             {% comment %} <a href="{%url 'my_projects'%}"><div class="myprojects secondary border"><p>My Projects</p></div></a> {% endcomment %}
             <a href="{%url 'ctfs_url'%}"><div class="CTFs border secondary"><p>CTFs</p></div></a>
