@@ -14,8 +14,8 @@
         <div class="user-info">
             <div class="space-y-3">
                 <p><span>Username:</span> {{ user.username }}</p>
-                <p><span>First Name:</span> {{ user.first_name }}</p>
-                <p><span>Last Name:</span> {{ user.last_name }}</p>
+                <p><span>Name:</span> {{ user.get_full_name }}</p>
+                {% comment %} <p><span>Last Name:</span> {{ user.last_name }}</p> {% endcomment %}
                 <p><span><b>Points:</b></span>{{total_points}}</p>
             </div>
         </div>
@@ -32,6 +32,28 @@
             <button type="submit" class="bg-red-600">Sign Out</button>
         </form>
     </div>
+
+    <div class = "subscription">
+    
+       <form action="{% url 'subscription' %}" method="POST">
+        {% csrf_token %}
+            {% if subscription.subscription_choice %}
+                <button type="submit">
+                    🔕 Unsubscribe        
+                </button>
+            {% else %}
+                <button type="submit">
+                    🔔  Subscribe
+                </button>   
+            {% endif %}
+       </form>
+       <i><br>
+    
+        Subscribe to get the notification of events and new challenges hosted by ACM </i>
+    </div>
+
+</div>
+
 </div>
  
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
@@ -68,5 +90,8 @@
     var chart = new ApexCharts(document.querySelector("#skill_matrix"), options);
     chart.render();
 </script>
+
+
+
 
 {% endblock %}

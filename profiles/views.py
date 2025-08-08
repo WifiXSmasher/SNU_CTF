@@ -16,7 +16,7 @@ def profile_landing(request):
             .aggregate(points=Coalesce(Sum('points_awarded'), Value(0), output_field=IntegerField()))
         )['points']
 
-        # Define categories (CTF types) - these are the skill areas
+        # Define categories (CTF types)
         ctf_types = ["STG", "WEB", "NET", "PVE", "ENM"]
         category_labels = ["Steganography", "Web Security", "Networks", "Privilege Escalation", "Enumeration"]
         
@@ -35,11 +35,48 @@ def profile_landing(request):
         categories_json = json.dumps(category_labels)
         category_points_json = json.dumps(category_points)
 
+        #fro subscription 
+        subscription, _ = Subscription.get_or_create_for_user(request.user)
+
+
         return render(request, "profiles/profile_landing.html", {
             "user": request.user,
             "total_points": total_points,
             "categories": categories_json,
-            "category_points": category_points_json
-        })
+            "category_points": category_points_json,
+            "subscription": subscription,
+        })    
     else:
         return render(request, "profiles/guest_profile.html")
+
+from .models import Subscription 
+from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_protect
+from django.contrib import messages
+
+@login_required
+@require_POST
+@csrf_protect
+def subscription(request):
+
+    try :
+        subscription ,created = Subscription.objects.get_or_create(
+            user=request.user,
+            defaults={'subscription_choice': False}
+        )
+
+        subscription.subscription_choice = not subscription.subscription_choice
+        subscription.save()
+
+        if subscription.subscription_choice:
+            messages.success(request, "✅ You've subscribed to email notifications!")
+        else:
+            messages.info(request, "❌ You've unsubscribed from email notifications.")
+
+    except Exception as e:
+        messages.error(request, "⚠️ Something went wrong. Please try again.")
+        # Log the error for debugging
+        print(f"Subscription toggle error for {request.user.username}: {e}")
+    
+    # Redirect back to profile
+    return redirect('profile_landing')
