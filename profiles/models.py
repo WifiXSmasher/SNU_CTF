@@ -32,6 +32,6 @@ class Subscription(models.Model):
         
         subscription, created = cls.objects.get_or_create(
             user=user,
-            defaults={'subscription_choice': True}
+            defaults={'subscription_choice': False}
         )
         return subscription, created
